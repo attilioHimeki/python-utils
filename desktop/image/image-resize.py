@@ -34,7 +34,7 @@ def resizeAspectFit(path, scaleRatio, q=90, f='JPEG', sampleFilter=Image.ANTIALI
                 name, ext = os.path.splitext(fullImagePath)
                 width, height = image.size
                 imResize = image.resize((int(width * scaleRatio), int(height * scaleRatio)), sampleFilter)
-                imResize.save(name + ' resized.' + f, f, quality=q)
+                imResize.save(name + '_resized.' + f, f, quality=q)
             else:
                 print("Skipping " + fullImagePath)
 
