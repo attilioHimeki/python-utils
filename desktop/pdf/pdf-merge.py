@@ -4,7 +4,7 @@ import os, sys, argparse
 def parseArguments():
     parser = argparse.ArgumentParser(description='PDF Merger Parameters')
     parser.add_argument('-V', '--version', action='version', version='0.0.1')
-    parser.add_argument("-o", "--output", type=str, default="result.pdf", required = False, help="Output PDF filename", metavar="FILE")
+    parser.add_argument("-o", "--output", type=str, default="result.pdf", required = False, help="Optional Output PDF filename", metavar="FILE")
     parser.add_argument("-D", "--dir", type=str, required = True, help="Supplied directory containing PDF files")
     parser.add_argument("-rr", "--recursive", dest='recursive', action='store_true', help="Should navigate the directory recursively?")
     parser.add_argument("-s", "--strict", dest='strict', action='store_true', help="If used, the operation will fail if there are issues with the issued PDF files")
@@ -18,7 +18,7 @@ def applyMerging(args):
     else:
         pdfDirPath = os.getcwd()
 
-    fileList = os.listdir(pdfDirPath)
+    fileList = sorted(os.listdir(pdfDirPath))
     
     if(len(fileList) > 0):
         merger = PdfFileMerger(args.strict)
